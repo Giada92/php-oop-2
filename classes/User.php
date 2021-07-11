@@ -1,6 +1,10 @@
-<?php 
+<?php
+
+    require_once __DIR__ ."/CreditCard.php";
     
     class User {
+
+        use CreditCard;
         
         private $name;
         private $lastname;
@@ -57,7 +61,10 @@
         }
     }
 
-/* $u1 = new User("Giada", "Meloni", "F", "giadameloni@gmail.com");
+$u1 = new User("Giada", "Meloni", "F", "giadameloni@gmail.com");
 //$p1->setEmail($email);
 $u1->setEmail("giadameloni@gmail.com");
-var_dump($u1); */
+$u1->setNumbercard("12800d258100");
+$u1->setExpirationDate("2025-07-01");
+$u1->setCcv("254");
+var_dump($u1);

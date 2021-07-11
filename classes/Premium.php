@@ -21,6 +21,8 @@
         }
 
     }
-$p1 = new Premium("Giada", "Meloni", "F", "giadameloni@gmail.com", 1);
+/* $p1 = new Premium("Giada", "Meloni", "F", "giadameloni@gmail.com", 1);
 $p1->setDiscount();
-var_dump($p1);
+var_dump($p1); */
+
+//CHIEDERE se con traits posso collegare lo sconto dei product con lo sconto del cliente premium

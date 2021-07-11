@@ -2,74 +2,98 @@
 
     class Product {
 
-        private $barcode;
+        private $name;
         private $category;
+        private $brand;
         private $price;
-        private $brend;
-        private $description;
-        private $img;
-        private $discount;
+        private $discount = 0;
+        private $price_discount = 0;
+        private $vote = 0;
 
-        //costruttore è sempre pubblico, quindi non lo specifico
-        function __construct($barcode, $category, $price, $brend, $description = "", $img = "percorso-assoluto.jpg", $discount = 0){
-            $this->barcode = $barcode;
+        //costruttore
+        function __construct($name, $category, $brand, $price){
+            $this->name = $name;
             $this->category = $category;
+            $this->brand = $brand;
             $this->price = $price;
-            $this->brend = $brend;
-            $this->description = $description;
-            $this->img = $img;
-            $this->discount = $discount;
         }
 
         //metodi
-        public function setBarcode($barcode) {
-            $this->barcode = $barcode;
+        public function setName($name){
+            $this->name = $name;
         }
 
-        public function getBarcode() {
-           return $this->barcode;
+        public function getName(){
+            return $this->name;
         }
 
-        public function getPrice() {
-            return $this->price . ",00 Euro";
-         }
-
-        public function getDescription() {
-            return $this->description;
+        public function setCategory($category){
+            $this->category = $category;
         }
 
-        public function setDescription() {
-            if(strlen($this->description) > 55){
-                return substr($this->description, 0, 55) . ".";
+        public function getCategory(){
+            return $this->category;
+        }
+
+        public function setBrand($brand){
+            $this->brand = $brand;
+        }
+
+        public function getBrand(){
+            return $this->brand;
+        }
+
+        public function setPrice($price){
+            $this->price = $price;
+        }
+
+        public function getPrice(){
+            return $this->price;
+        }
+
+        public function setDiscount(){
+            if($this->category == "Smartphone"){
+                $this->discount = 35;
+            }elseif($this->category == "Pc"){
+                $this->discount = 25;
             }else {
-                return $this->description;
+                $this->discount = 0;
             }
         }
 
-        public function getImg(){
-            return $this->img;
+        public function getDiscount(){
+            return $this->discount;
         }
 
-        public function setDiscount ($eta) {
-            if($eta >= 60){
-                $this->discount = 30;
+        public function setPriceDiscount(){
+            if($this->getDiscount() != 0){
+                $this->price_discount = $this->price - ($this->price * ($this->getDiscount() / 100));
+            }else {
+                $this->price_discount;
             }
         }
 
-        public function getDiscount() {
-           return $this->discount;
+        public function getPriceDiscount(){
+            return $this->price_discount;
         }
+
+        public function setVote($vote){
+            $this->vote = $vote;
+        }
+
+        public function getVote(){
+            return $this->vote;
+        }
+
+
     }
 
-/* $description1 = "HP 250 G8 DDR4-SDRAM Computer portatile 39,6 cm (15.6') 1920 x 1080 Pixel Intel® Core™ i3 di undicesima generazione 8 GB 256 GB SSD Wi-Fi 6 (802.11ax) Windows 10 Home Argento";
-$img1_url ="https://static1.unieuro.it/medias/sys_master/root/h0a/h00/32752489562142/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-8002aec60b0fd03187900d5df21565a0-preview-sgmConversionBaseFormat-sgmProductFormat.jpg";
-$prod1 = new Product ("123CD157", "Informatica", 500, "HP", $description1, $img1_url); 
-$prod1->setDiscount(65); */
-//var_dump($prod1);
-
-//$prod1->setBarcode("AAAAAAAA");
-//var_dump($prod1);
-
-//echo $prod1->getBarcode("AAAAAAA");
-//echo $prod1->barcode; ERROR perchè non posso accede alla proprietà $barcode in quanto è private
-
+    $product1 = new Product("Apple", "Smartphone", "iPhone", 700);
+    $product1->setName("APPLE iPhone 11 128GB Nero");
+    $product1->setDiscount();
+    $product1->setPriceDiscount();
+    //echo $product1->getDiscount();
+    $product1->setVote(4);
+    $product1-> setPrice(700);
+    var_dump($product1);
+    
